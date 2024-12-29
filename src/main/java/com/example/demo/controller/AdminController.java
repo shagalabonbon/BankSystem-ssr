@@ -33,9 +33,6 @@ public class AdminController {
 	private UserService userService;
 	
 	@Autowired
-	private AccountService accountService;
-	
-	@Autowired
 	private GmailService gmailService;
 	
 	@Autowired
@@ -80,7 +77,7 @@ public class AdminController {
 	// 管理指定用戶
 	
 	@PostMapping("/user-manage")
-	@CheckAdminSession
+	
 	private String manageCertainUser(@RequestParam String idNumber,RedirectAttributes redirectAttributes) {  // redirect會清空 model 資料，因此要用 redirectAttributes 儲存
 		
 		List<UserDto> certainUserDtos = userService.getUserByIdNumber(idNumber);
@@ -95,7 +92,6 @@ public class AdminController {
 	// 變更用戶資料
 	
 	@GetMapping("/user-manage/{id}/update")
-	@CheckAdminSession
 	private String adminUpdatePage(@PathVariable("id") Long userId,Model model) { 
 		
 		UserDto manageUserDto = userService.getUser(userId);
@@ -107,7 +103,6 @@ public class AdminController {
 	
 	
 	@PostMapping("/user-manage/{id}/update")
-	@CheckAdminSession
 	private String updateUser( @RequestParam Long manageUserId ,@ModelAttribute UserDto manageUserDto) { 
 		
 		userService.updateUser(manageUserId,manageUserDto.getUsername(),manageUserDto.getGender(), manageUserDto.getEmail(),manageUserDto.getPhone());
@@ -119,7 +114,6 @@ public class AdminController {
 	// 刪除用戶
 	
 	@PostMapping("/user-manage/{id}/remove")
-	@CheckAdminSession
 	private String deleteUser( @PathVariable("id") Long userId) { 
 
 		userService.deleteUser(userId);  // 刪除用戶
@@ -132,7 +126,6 @@ public class AdminController {
 	// 用戶審核 --------------------------------------------------------------
 	
 	@GetMapping("/user-approval")
-	@CheckAdminSession
 	private String approvalPage(Model model) {
 		
 		List<User> pendingUsers = userService.findAllApprovePendingUsers();
@@ -146,7 +139,6 @@ public class AdminController {
 	// 審核用戶
 	
 	@PostMapping("/user-approval/approve/{id}")
-	@CheckAdminSession
 	private String approveUserRegister(@PathVariable(value = "id") Long userId) {
 		
 		// 變更用戶 approve 狀態
@@ -169,7 +161,6 @@ public class AdminController {
 	
 	
 	@PostMapping("/user-approval/reject/{id}")
-	@CheckAdminSession
 	private String rejectUserRegister(@PathVariable(value = "id") Long userId) {
 		
 		// 發送申請失敗郵件
@@ -192,7 +183,6 @@ public class AdminController {
 	
 	
 	@GetMapping("/statistics")
-	@CheckAdminSession
 	public String statisticPage(Model model) {
 		
 		// 計算性別數量

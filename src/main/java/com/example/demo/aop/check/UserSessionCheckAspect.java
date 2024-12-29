@@ -1,19 +1,14 @@
 package com.example.demo.aop.check;
 
-import java.io.IOException;
-
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.example.demo.exception.authexception.UnauthorizedException;
 import com.example.demo.model.dto.UserDto;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 /* @Before、@After 只能執行邏輯，無法直接阻止目標方法執行

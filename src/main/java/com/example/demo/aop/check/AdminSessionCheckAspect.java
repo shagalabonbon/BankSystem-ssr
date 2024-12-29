@@ -21,7 +21,7 @@ public class AdminSessionCheckAspect {
 	@Autowired
     private HttpServletRequest request;
     
-    @Around("@annotation(com.example.demo.aop.check.CheckUserSession)")
+    @Around("@annotation(com.example.demo.aop.check.CheckAdminSession)")
     public Object checkUserSession(ProceedingJoinPoint joinPoint) throws Throwable {
     	
         HttpSession session = request.getSession();
