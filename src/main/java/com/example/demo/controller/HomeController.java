@@ -13,6 +13,7 @@ import com.example.demo.model.dto.UserDto;
 import com.example.demo.model.entity.Account;
 import com.example.demo.service.AccountService;
 import com.example.demo.service.ExchangeRateService;
+import com.example.demo.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -26,6 +27,9 @@ public class HomeController {
 	
 	@Autowired
 	private AccountService accountService;
+	
+	@Autowired
+	private UserService userService;
 	
 	// ----------------------------------------------------------------
 	
@@ -73,16 +77,29 @@ public class HomeController {
 	@GetMapping("/admin/home")
 	public String adminHomePage(HttpSession session, Model model) {
 		
-		UserDto loginAdminDto = (UserDto) session.getAttribute("loginAdminDto");   // session 檢查登入時資料
+		UserDto loginAdminDto = (UserDto)session.getAttribute("loginAdminDto");   // session 檢查登入時資料
 		
-		if( loginAdminDto != null) {                           
+		if( loginAdminDto == null) {                           
 			
-			model.addAttribute("loginAdminDto",loginAdminDto);  // 資料用 model 傳遞到頁面
-			
-			return "admin_homepage";
+			return "redirect:/bank/admin/login";  // 尚未登入，返回登入頁面
 		}
 		
-		return "redirect:/bank/admin/login";  // 尚未登入，返回登入頁面
+		// 回傳所有用戶資料
+		
+		List<UserDto> allUserDtos = userService.findAllUsers()   
+	                             			   .stream()
+	                             			   .filter( user-> user.getRole().equals("ROLE_USER"))
+	                             			   .filter( user-> user.getApprove().equals("APPROVED"))
+	                             			   .toList();    
+	    				                             
+		model.addAttribute("allUserDtos",allUserDtos);
+		
+		model.addAttribute("loginAdminDto",loginAdminDto);  // 資料用 model 傳遞到頁面
+		
+		System.out.print(allUserDtos);
+			
+		return "admin_homepage";
+		
 	}
 	
 	

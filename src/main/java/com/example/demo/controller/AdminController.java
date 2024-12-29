@@ -70,8 +70,6 @@ public class AdminController {
 	    				                             
 		model.addAttribute("allUserDtos",allUserDtos);
 		
-		model.addAttribute("showTable", true );
-		
 		return "admin_manage";
 	}
 	
