@@ -56,12 +56,13 @@ public class AuthController {
 	}
 	
 	
-	@PostMapping("/logout")                      // 使用 spring security
+	@PostMapping("/logout")                       
 	public String logout(HttpSession session) {
 		
 		session.invalidate();
 		
 		return "redirect:/bank/index";  
+		
 	}
 	
 	
