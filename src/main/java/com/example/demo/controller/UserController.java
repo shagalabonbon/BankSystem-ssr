@@ -105,7 +105,6 @@ public class UserController {
 	// ---------------------------------------
 	
 	@DeleteMapping("/delete/{id}")
-	@CheckAdminSession
 	public String deleteTargetUser(@PathVariable(value = "id") Long userId ) {
 		
 		userService.deleteUser(userId);

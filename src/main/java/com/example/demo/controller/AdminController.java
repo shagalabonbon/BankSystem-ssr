@@ -41,7 +41,6 @@ public class AdminController {
 	// 用戶管理 ------------------------------------------------------------
   
 	@GetMapping("/user-manage")
-	@CheckAdminSession
 	private String manageUserPage(Model model,RedirectAttributes redirectAttributes) {
 		
 		// 從 Model 取得 Flash 資料
@@ -71,13 +70,14 @@ public class AdminController {
 	    				                             
 		model.addAttribute("allUserDtos",allUserDtos);
 		
+		model.addAttribute("showTable", true );
+		
 		return "admin_manage";
 	}
 	
 	// 管理指定用戶
 	
-	@PostMapping("/user-manage")
-	
+	@PostMapping("/user-manage")	
 	private String manageCertainUser(@RequestParam String idNumber,RedirectAttributes redirectAttributes) {  // redirect會清空 model 資料，因此要用 redirectAttributes 儲存
 		
 		List<UserDto> certainUserDtos = userService.getUserByIdNumber(idNumber);
@@ -97,6 +97,8 @@ public class AdminController {
 		UserDto manageUserDto = userService.getUser(userId);
 		
 		model.addAttribute("manageUserDto",manageUserDto);
+		
+		
 		
 		return "admin_manage_update";
 	}
