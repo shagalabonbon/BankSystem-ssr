@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.aop.check.CheckAdminSession;
 import com.example.demo.aop.check.CheckUserSession;
 import com.example.demo.exception.userexception.UserNotFoundException;
 import com.example.demo.model.dto.UserDto;
@@ -71,14 +72,12 @@ public class UserController {
 
 
 	@GetMapping("/update")
+	@CheckUserSession
 	public String updatePage( HttpSession session , Model model) {
 		
 		UserDto loginUserDto = (UserDto) session.getAttribute("loginUserDto");     // session 用來確認用戶有沒有登入
 		
-		if (loginUserDto == null) {
-	        
-	        return "redirect:/bank/login";                 // 如果沒有找到 userDto，則可以重定向到登錄頁面或顯示錯誤訊息
-	    }
+
 		
 		model.addAttribute("loginUserDto", loginUserDto);  // 將 session 資料用 model 傳遞到 update.html ( th:object + th:field 會將欄位帶入已存在資料 )
 			
@@ -87,6 +86,7 @@ public class UserController {
 	    
 	
 	@PostMapping("/update/{id}")
+	@CheckUserSession
 	public String updateUserDetail( @PathVariable Long id , @ModelAttribute UserDto loginUserDto , HttpSession session) throws UserNotFoundException{
 		
 	    userService.updateUser(id,loginUserDto.getUsername(),loginUserDto.getGender(),loginUserDto.getEmail(),loginUserDto.getPhone());
@@ -105,6 +105,7 @@ public class UserController {
 	// ---------------------------------------
 	
 	@DeleteMapping("/delete/{id}")
+	@CheckAdminSession
 	public String deleteTargetUser(@PathVariable(value = "id") Long userId ) {
 		
 		userService.deleteUser(userId);

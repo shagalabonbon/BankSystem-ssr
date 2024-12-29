@@ -75,9 +75,9 @@ public class AuthController {
 	@PostMapping("/admin/login")
 	private String adminLogin(@RequestParam String idNumber,@RequestParam String password , HttpSession session,Model model) {
 		
-		UserDto loginAdminDto = authService.adminLogin(idNumber, password);
+		UserDto loginAdminDto = authService.adminLogin(idNumber,password);
 		
-		session.setAttribute("loginAdminDto", loginAdminDto);  // 資料存入 session 
+		session.setAttribute("loginAdminDto",loginAdminDto);  // 資料存入 session 
 		
 		return "redirect:/bank/admin/home" ;   // 引導到 HomeController
 		

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.aop.check.CheckUserSession;
 import com.example.demo.model.dto.ExchangeRate;
 import com.example.demo.model.dto.TransactionRecordDto;
 import com.example.demo.model.dto.UserDto;
@@ -36,7 +37,7 @@ import org.springframework.web.bind.annotation.PostMapping;
  * */
 
 @Controller
-@RequestMapping("/bank/transaction")   
+@RequestMapping("/bank/transaction")  
 public class TransactionController {
 	
 	@Autowired
@@ -50,6 +51,7 @@ public class TransactionController {
 	
 
 	@GetMapping("/transfer")               // 轉帳頁面
+	@CheckUserSession
 	public String transferPage(Model model,HttpSession session) {
 		
 		UserDto loginUserDto =  (UserDto)session.getAttribute("loginUserDto");
@@ -64,6 +66,7 @@ public class TransactionController {
 	}
 	
 	@PostMapping("/transfer/check")
+	@CheckUserSession
 	public String checkTransfer(@ModelAttribute TransactionRecordDto transferDto,Model model ) {
 		
 		model.addAttribute("transferDto",transferDto); // 將輸入資料傳遞到確認頁
@@ -73,6 +76,7 @@ public class TransactionController {
 	
 	
 	@PostMapping("/transfer/confirm")
+	@CheckUserSession
 	public String doTransfer( @ModelAttribute TransactionRecordDto transferDto,Model model) {
 		
 		transactionService.transfer(transferDto.getFromAccountNumber(),transferDto.getToAccountNumber(),transferDto.getAmount(),transferDto.getDescription());
@@ -86,6 +90,7 @@ public class TransactionController {
 	// 換匯  --------------------------------------
 
 	@GetMapping("/exchange")
+	@CheckUserSession
 	public String exchangePage(Model model,HttpSession session) { 
 		
 		// 執行匯率更新
@@ -107,6 +112,7 @@ public class TransactionController {
 	
 	
 	@PostMapping("/exchange/check")
+	@CheckUserSession
 	public String doExchange( @ModelAttribute TransactionRecordDto exchangeDto,@RequestParam String currencyCode,@RequestParam String targetRate,Model model,HttpSession session) {
 		
 		UserDto loginUserDto =  (UserDto)session.getAttribute("loginUserDto");
@@ -129,6 +135,7 @@ public class TransactionController {
 	
 	
 	@PostMapping("/exchange/confirm") 
+	@CheckUserSession
 	public String checkExchange(@ModelAttribute TransactionRecordDto exchangeDto,@RequestParam String targetRate,@RequestParam String formatAmount,Model model) {
 		
 		// 進行換匯 ***
@@ -150,10 +157,10 @@ public class TransactionController {
 	
 	
 	
-	
 	/* 匯率爬蟲 - 完成 */
 	
 	@GetMapping("/exchange-rate")
+	@CheckUserSession
 	public String exchangeRatePage(Model model,HttpSession session) {
 		
 		List<ExchangeRate> exchangeRates = exchangeRateService.getTwdExchangeRate();
@@ -173,9 +180,6 @@ public class TransactionController {
 		return "exchange_rate";
 		
 	}
-	
-	
-	
 	
 	
 }

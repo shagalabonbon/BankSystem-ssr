@@ -16,6 +16,7 @@
 		<div class="row justify-content-center">
 			<div class="bg-light p-4 rounded col-md-4 p-5 ">
 				<form th:action="@{/bank/login}" method="post" class="d-flex flex-column">
+				
 					<div class="mb-5">
 						<label for="idNumber" class="form-label col-form-label-lg">身分證字號</label>
 						<input type="text" name="idNumber"
@@ -24,8 +25,7 @@
 					</div>
 					<div class="mb-5">
 						<label for="password" class="form-label col-form-label-lg">密碼</label>
-						<input type="password" name="password"
-							class="form-control form-control-lg" id="password" required>
+						<input type="password" name="password" class="form-control form-control-lg" id="password" required>
 					</div>
 
 					<button type="submit" class="btn btn-primary btn-lg mt-5">登入</button>

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.example.demo.exception.authexception.UnauthorizedException;
 import com.example.demo.model.dto.UserDto;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
@@ -21,32 +22,24 @@ import jakarta.servlet.http.HttpSession;
  * 
  * */ 
 
-@Aspect 
+@Aspect
 @Component
 public class UserSessionCheckAspect {
 
-	@Autowired
-	private HttpSession session;
-	
-	@Autowired
-    private HttpServletResponse response; // 用於執行重導向操作
-	
-	@Around("@annotation(com.example.demo.aop.check.CheckUserSession)")      // Before 方法執行前執行 -  @annotation( 自定義標籤位置 ) 匹配使用到 @CheckUserSession 的方法
-	public Object checkUserSession(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-		
-		// 取得 User
-		
-		UserDto loginUserDto = (UserDto)session.getAttribute("loginUserDto");
-		
-		// 檢查登入狀態
-		
-		if( loginUserDto == null ) {
-			response.sendRedirect("/bank/login");   // 若未登入，直接重導到登入頁面
-			   
-		}
-		
-		return null;
+    @Autowired
+    private HttpServletRequest request;
+    
+    @Around("@annotation(com.example.demo.aop.check.CheckUserSession)")
+    public Object checkUserSession(ProceedingJoinPoint joinPoint) throws Throwable {
+    	
+        HttpSession session = request.getSession();
+        UserDto loginUserDto = (UserDto) session.getAttribute("loginUserDto");
 
-	}
-	
+        if (loginUserDto == null) {
+            
+            return "redirect:/bank/login"; 
+        }
+
+        return joinPoint.proceed(); // 正常執行目標方法
+    }
 }
