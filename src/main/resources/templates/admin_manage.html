@@ -3,8 +3,10 @@
 	th:replace="~{layout/main_login_admin}">
 <head>
 <meta charset="UTF-8">
-
 <title th:fragment="title">用戶管理列表</title>
+<th:block th:fragment>
+	<link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.min.css">
+</th:block>
 </head>
 <body>
 
@@ -28,7 +30,7 @@
 			</div>
 
 
-			<table class="table" >
+			<table class="table" id="user-manage-table">
 				<thead>
 					<tr>
 						<th scope="col">編號</th>

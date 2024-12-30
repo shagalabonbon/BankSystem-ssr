@@ -208,3 +208,46 @@ Using generated security password: 9920e389-9d5f-40ba-93e8-9b09f3d40d1c
 
 This generated password is for development use only. Your security configuration must be updated before running your application in production.
 
+2024-12-30 10:16:46 WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-30 10:16:46 WARN : o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -- 
+
+Using generated security password: edda43a4-e934-47f2-bb81-18e227198e79
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-30 10:19:15 WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-30 10:19:15 WARN : o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -- 
+
+Using generated security password: 0d9c784a-5836-4e10-a763-8cd73fa968e3
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-30 10:33:23 WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-30 10:33:23 WARN : o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -- 
+
+Using generated security password: e9f29aa6-842f-48a7-9808-8790340de969
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-30 10:44:59 WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-30 10:44:59 WARN : o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -- 
+
+Using generated security password: fcb92c85-12e0-4fa3-be41-feecba5a3eb1
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-30 10:46:54 WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-30 10:46:54 WARN : o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -- 
+
+Using generated security password: 5657a947-bdfa-46f1-ab18-52ce3c69e6b0
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+
+2024-12-30 14:56:19 WARN : o.a.t.u.net.NioEndpoint -- The executor associated with thread pool [https-jsse-nio-8443] has not fully shutdown. Some application threads may still be running.
+2024-12-30 14:56:31 WARN : o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration -- spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-30 14:56:31 WARN : o.s.b.a.s.s.UserDetailsServiceAutoConfiguration -- 
+
+Using generated security password: c1f1318e-dc0a-4fa0-894c-f9d9ebf8c354
+
+This generated password is for development use only. Your security configuration must be updated before running your application in production.
+

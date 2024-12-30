@@ -80,7 +80,7 @@ public class AuthController {
 		
 		session.setAttribute("loginAdminDto",loginAdminDto);  // 資料存入 session 
 		
-		return "redirect:/bank/admin/home" ;   // 引導到 HomeController
+		return "redirect:/bank/admin/user-manage" ;   // 引導到 HomeController
 		
 	}
 	
