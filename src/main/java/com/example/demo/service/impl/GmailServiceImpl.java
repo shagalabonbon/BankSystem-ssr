@@ -48,7 +48,7 @@ public class GmailServiceImpl implements GmailService {
 	@Override
 	public Gmail getGmailService() throws Exception {
 		
-        clearStoredTokens();    /* 使用時將此行取消註解 ( 讓 token 重新授權 ) */
+//      clearStoredTokens();    /* 使用時將此行取消註解 ( 讓 token 重新授權 ) */
 			
 		// 金鑰檔案路徑
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(GmailServiceImpl.class.getResourceAsStream("/credentials.json")));  // getResourceAsStream: 以流的方式讀取 credentials.json，該檔案應位於 src 目錄下         
