@@ -56,6 +56,6 @@ public class Account {
 	@ManyToOne
 	private Branch branch;
 	
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true )  // 刪除帳戶時會一併刪除交易記錄 ( 只影響)
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, orphanRemoval = true )  // 刪除帳戶時會一併刪除交易記錄 ( 只影響 )
 	private List<TransactionRecord> transactions;
 } 
