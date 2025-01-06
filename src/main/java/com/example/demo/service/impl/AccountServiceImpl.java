@@ -52,7 +52,7 @@ public class AccountServiceImpl implements AccountService {
 	private BranchRepository branchRepository;
 	
 	@Autowired
-	private ModelMapper modelMapper;
+	private ModelMapper modelMapper; 
 	
 	@Override
 	public String generateAccountNumber(Branch branch,String businessCode) {
